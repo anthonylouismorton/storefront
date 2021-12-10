@@ -2,10 +2,10 @@
 
 let initialState = {
   category: [
-    'all',
-    'fruit',
-    'veggie'
-  ],
+    {displayName:'all', normalizedName: 'all', description:'all products'}, 
+    {displayName:'fruit', normalizedName: 'fruit', description:'all fruits'}, 
+    {displayName:'veggie',normalizedName:'veggie', description:'all veggies'},
+    ],
 
   currentCategory: null,
 }
@@ -20,7 +20,7 @@ function categoryReducer(state = initialState, action){
       else if(state.category.includes(payload)){
         return {category: state.category, currentCategory: payload}
       }
-    break;
+      return initialState
     default:
       return state;
   }
