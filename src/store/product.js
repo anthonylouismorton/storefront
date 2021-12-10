@@ -1,9 +1,9 @@
 let initialState= {
   products: [
-    {productName: 'banana', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5XGxPCEjJtOmxnAqJ3xu_2VFYvuoSPDIJXg&usqp=CAU', description: 'this is a carrot', category: 'fruit', cost: 1, count: 1},
-    {productName: 'apple', image: 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.heb.com%2Fis%2Fimage%2FHEBGrocery%2F000375146&imgrefurl=https%3A%2F%2Fwww.heb.com%2Fproduct-detail%2Ffresh-gala-apples%2F375146&tbnid=N40DRqb0oogxtM&vet=12ahUKEwiskLPt6dX0AhX8ATQIHWPDCCUQMygSegUIARC9Ag..i&docid=MW3VS3uOnRIDuM&w=2414&h=2414&itg=1&q=apple&ved=2ahUKEwiskLPt6dX0AhX8ATQIHWPDCCUQMygSegUIARC9Ag', description: 'this is an apple', category: 'fruit', cost: 1, count: 1},
-    {productName: 'carrot', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv10_Hzl_ZBXTf8GcSz4kecFDGo_YOQvkcbg&usqp=CAU', description: 'this is a carrot', category: 'veggie', cost: 1, count: 1},
-    {productName: 'celery', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4WNUVhLrSgQJjNd3dl_kozuNRlkx_DRiy-Q&usqp=CAU', description: 'this is celery', category: 'veggie', cost: 1, count: 1},
+    {productName: 'banana', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5XGxPCEjJtOmxnAqJ3xu_2VFYvuoSPDIJXg&usqp=CAU', description: 'this is a carrot', category: 'fruit', cost: 1, inStock: 0, cartQuantity: 0},
+    {productName: 'apple', image: 'https://i5.walmartimages.com/asr/32451a10-0563-426a-9a16-a8865b2c3774_3.b3be01fcc4c956f51fe3890589897d31.jpeg', description: 'this is an apple', category: 'fruit', cost: 1, inStock: 0, cartQuantity: 0},
+    {productName: 'carrot', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv10_Hzl_ZBXTf8GcSz4kecFDGo_YOQvkcbg&usqp=CAU', description: 'this is a carrot', category: 'veggie', cost: 1, inStock: 0, cartQuantity: 0},
+    {productName: 'celery', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4WNUVhLrSgQJjNd3dl_kozuNRlkx_DRiy-Q&usqp=CAU', description: 'this is celery', category: 'veggie', cost: 1, inStock: 0, cartQuantity: 0},
   ],
 };
 
@@ -13,11 +13,11 @@ function productReducer(state = initialState, action) {
 
   switch(type) {
     case 'SELECTED_CATEGORY':
-        if (payload !== 'ALL') {
-          let filteredproduct = state.products.filter(product => product.category === payload)
+        if (payload !== 'all') {
+          let filteredproduct = initialState.products.filter((product) => product.category === payload)
           return {products: filteredproduct}
         } 
-    break;
+    return initialState;
     default:
       return state;
   }
