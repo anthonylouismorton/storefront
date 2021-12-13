@@ -2,7 +2,6 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import MenuIcon from '@mui/icons-material/Menu';
 import { connect } from 'react-redux';
 
 function SimpleCart(props) {
@@ -37,6 +36,7 @@ function SimpleCart(props) {
                 <MenuItem
                     onClick={() => {
                         setAnchorEl(null);
+                        props.showCartHandler()
                     }}
                 >
                     View Cart

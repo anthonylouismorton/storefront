@@ -7,25 +7,37 @@ let initialState = {
 function cartReducer(state = initialState, action) {
 
   let { type, payload } = action;
-
-  switch(type) {
+  switch (type) {
     case 'ADD_TO_CART':
-        if (payload) {
-          if(state.cart.includes(payload)){
-            payload.cartQuantity++;
-            return{...state, totalItems: state.totalItems + 1};
-          }
-          else{
-            payload.cartQuantity = 1;
-            state.totalItems++;
-            return{...state, cart: [...state.cart, payload]}
-          }
+        if (payload.inventoryCount === 0) {
+            return state;
+        } else {
+            return {
+                cart: [...state.cart, payload.name],
+                totalItems: state.totalItems + 1,
+            };
+        }
+  // switch(type) {
+  //   case 'ADD_TO_CART':
+  //       if (payload) {
+  //         if(state.cart.includes(payload)){
+  //           payload.cartQuantity++;
+  //           return{...state, totalItems: state.totalItems + 1};
+  //         }
+  //         else{
+  //           payload.cartQuantity = 1;
+  //           state.totalItems++;
+  //           return{...state, cart: [...state.cart, payload]}
+  //         }
           
-        } 
+  //       } 
     return initialState;
     case 'REMOVE_FROM_CART':
         if(payload){
-          if(state.cart.includes(payload)){
+          console.log(payload)
+          console.log(state.cart)
+          if(state.cart.includes(payload.name)){
+            console.log('in the first if')
             if(payload.cartQuantity === 1){
               let item = state.cart.indexOf(payload)
               state.cart.slice(item,1)
