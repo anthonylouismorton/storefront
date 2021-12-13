@@ -1,10 +1,15 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { connect } from 'react-redux';
+import {fetchCategories} from '../../store/categories'
 
 function Headermenu(props) {
+  useEffect(()=> {
+    props.getCategory();
+  }, [])
+  console.log(props)
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -14,10 +19,8 @@ function Headermenu(props) {
 
   const handleClick2 = (e) => {
     props.changeCategory(e);
-    console.log(e)
+
   }
-
-
   return (
     <div>
       <Button
@@ -39,10 +42,12 @@ function Headermenu(props) {
         }}
       >
         {props.category.map((item, key) => (
+          
           <MenuItem key={key} name={item.displayName} 
           onClick={()=> {
             props.changeCategory(item.displayName); 
             setAnchorEl(null);
+            console.log(item)
           }}>{item.displayName}</MenuItem>
         ))}
       </Menu>
@@ -55,6 +60,7 @@ const mapStateToProps = (state) => ({category: state.category.category});
 const mapDispatchToProps = (dispatch) => ({
   changeCategory: (name) =>
       dispatch({ type: 'SELECTED_CATEGORY', payload: name }),
+  getCategory: () => dispatch(fetchCategories())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Headermenu);

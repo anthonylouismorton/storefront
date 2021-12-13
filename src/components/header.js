@@ -4,10 +4,10 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import Categories from './components/menu/categories.js'
-import SimpleCart from './components/cart/simpleCart.js'
+import Categories from './menu/categories.js'
+import SimpleCart from './cart/simpleCart.js'
 
-export default function Header() {
+export default function Header(props) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -21,10 +21,12 @@ export default function Header() {
           >
           </IconButton>
           <Categories />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography onClick={()=> {
+            props.hideCartHandler(); 
+          }} variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Store Front
           </Typography>
-          <SimpleCart/>
+          <SimpleCart showCartHandler={props.showCartHandler}/>
         </Toolbar>
       </AppBar>
     </Box>
