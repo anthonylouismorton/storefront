@@ -9,7 +9,6 @@ function Headermenu(props) {
   useEffect(()=> {
     props.getCategory();
   }, [])
-  console.log(props)
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -47,7 +46,6 @@ function Headermenu(props) {
           onClick={()=> {
             props.changeCategory(item.displayName); 
             setAnchorEl(null);
-            console.log(item)
           }}>{item.displayName}</MenuItem>
         ))}
       </Menu>

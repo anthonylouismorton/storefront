@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
 import { connect } from 'react-redux';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
 function ProductCard(props) {
-  console.log(props)
   return (
     
     <Card 
@@ -30,10 +31,14 @@ function ProductCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={() => {
+        <AddShoppingCartIcon size="small" onClick={() => {
           props.addToCart(props.product)
           }}>
-            Add to Cart</Button>
+            Add to Cart</AddShoppingCartIcon>
+        <RemoveShoppingCartIcon size="small" onClick={() => {
+          // props.addToCart(props.product)
+          }}>
+            Add to Cart</RemoveShoppingCartIcon>
         <Button size="small">Details</Button>
       </CardActions>
     </Card>

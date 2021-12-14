@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 let initialState = {
   cart: [],
   totalItems: 0
@@ -34,10 +36,8 @@ function cartReducer(state = initialState, action) {
     return initialState;
     case 'REMOVE_FROM_CART':
         if(payload){
-          console.log(payload)
-          console.log(state.cart)
+    
           if(state.cart.includes(payload.name)){
-            console.log('in the first if')
             if(payload.cartQuantity === 1){
               let item = state.cart.indexOf(payload)
               state.cart.slice(item,1)
@@ -52,9 +52,18 @@ function cartReducer(state = initialState, action) {
             }
           }
         }
+    case 'FETCH_CART':
+    return {cart: payload};
     default:
       return state;
   }
+}
+export const fetchCart = () => async (dispatch) => {
+  const response = await axios.get(`${process.env.REACT_APP_API_SERVER}/cart`);
+  dispatch({
+    type: 'FETCH_CART',
+    payload: response.data.results
+  })
 }
 
 export default cartReducer;
