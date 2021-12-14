@@ -13,7 +13,7 @@ const Products = (props) => {
     maxWidth='xxl' 
     sx={{ display: 'flex', justifyContent: 'flexStart', flexDirection: 'row', margin: 5}}>
 
-      {props.product.map((product, index) => {
+      {props.product.filtered.map((product, index) => {
         return <ProductCard key={index} product={product} />;
       })}
     </Box>
@@ -21,11 +21,11 @@ const Products = (props) => {
 };
 
 
-const mapStateToProps = (state) => ({product: state.products.products, cart: state.cart.cart}) 
+const mapStateToProps = (state) => ({product: state.products, cart: state.cart.cart}) 
 
 const mapDispatchToProps = (dispatch) => ({
   changeCategory: (name) =>
-    dispatch({ type: 'SELECTED_CATEGORY', payload: name }),
+  dispatch({ type: 'SELECTED_CATEGORY', payload: name }),
   getProducts: () => dispatch(fetchProducts())
 
 });
